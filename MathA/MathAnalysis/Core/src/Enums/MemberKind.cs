@@ -3,6 +3,6 @@
     internal enum MemberKind
     {
         Terms,
-        Sides
+        SideS
     }
 }
