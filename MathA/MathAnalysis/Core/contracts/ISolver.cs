@@ -2,9 +2,9 @@
 
 namespace MathA.MathAnalysis.Core.contracts
 {
-    internal interface Resolver
+    internal interface ISolver
     {
         Result Result { get; }
-        void Resolve();
+        void Solve();
     }
 }
