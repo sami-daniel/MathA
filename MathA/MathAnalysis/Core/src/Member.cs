@@ -1,9 +1,9 @@
 ﻿namespace MathA.MathAnalysis.Core.src
 {
-    internal readonly struct Member
+    internal struct Member
     {
-        public double AbsValue { get; }
-        public string CompValue { get; }
-        public string Variable { get; }
+        public readonly double Coefficient { get; }
+        public readonly string CompValue { get; }
+        public readonly string? Variable { get; }
     }
 }
