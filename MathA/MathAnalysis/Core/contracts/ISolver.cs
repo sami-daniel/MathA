@@ -4,7 +4,7 @@ namespace MathA.MathAnalysis.Core.contracts
 {
     internal interface ISolver
     {
-        Result Result { get; }
+        Result? Result { get; }
         void Solve();
     }
 }
