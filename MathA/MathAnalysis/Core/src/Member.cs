@@ -2,14 +2,12 @@
 
 namespace MathA.MathAnalysis.Core.src
 {
-    internal struct Member
+    internal readonly struct Member
     {
-        private MemberKind kind;
-
-        public readonly double Coefficient { get; }
-        public readonly string CompValue { get; }
-        public readonly string? Variable { get; }
-        public MemberKind Kind { readonly get => kind; set => kind = value; }
+        public MemberKind Kind { get; }
+        public double Coefficient { get; }
+        public string CompValue { get; }
+        public string? Variable { get; }
 
         public Member(MemberKind _kind, double coefficient, string compValue, string? variable) : this()
         {
