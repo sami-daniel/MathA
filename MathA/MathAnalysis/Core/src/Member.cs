@@ -16,9 +16,12 @@ namespace MathA.MathAnalysis.Core.src
         public Member(MemberKind _kind, string compValue) : this()
         {
             Kind = _kind;
+            Variable = "";
+            Coefficient = 0d;
             CompValue = compValue ?? throw new ArgumentNullException(nameof(compValue) + "is null");
             try
             {
+                ConfigV();
                 this.SolveR();
             }
             catch
@@ -38,9 +41,9 @@ namespace MathA.MathAnalysis.Core.src
                 }
                 else if (char.IsLetter(c))
                 {
-                    if (Variable != c.ToString())
+                    if (Variable != c.ToString() && Variable != "")
                     {
-                        throw new InvalidCharactersInExpressionException(nameof(c) + "is invalid. " +
+                        throw new InvalidCharactersInExpressionException(Variable + c + " is invalid. " +
                         "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                     }
                     else
@@ -50,8 +53,7 @@ namespace MathA.MathAnalysis.Core.src
                 }
                 else
                 {
-                    throw new InvalidCharactersInExpressionException(nameof(c) + "is invalid. " +
-                        "Check github.com https://github.com/sami-daniel/MathA to use correctly");
+                    
                 }
             }
         }
@@ -75,7 +77,7 @@ namespace MathA.MathAnalysis.Core.src
 
         public override string ToString()
         {
-            return CompValue + ", kind of" + Kind.ToString();
+            return Result + ", kind of " + Kind.ToString() + "-type";
         }
     }
 }

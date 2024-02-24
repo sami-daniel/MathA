@@ -2,7 +2,7 @@
 {
     internal enum MemberKind
     {
-        Terms,
-        SideS
+        Term,
+        Side
     }
 }
