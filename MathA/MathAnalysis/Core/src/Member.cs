@@ -1,5 +1,6 @@
 ﻿using MathA.MathAnalysis.Core.contracts;
 using MathA.MathAnalysis.Core.src.Enums;
+using MathA.MathAnalysis.Core.src.Exceptions;
 using MathA.MathAnalysis.Core.src.Statics;
 
 namespace MathA.MathAnalysis.Core.src
@@ -15,7 +16,7 @@ namespace MathA.MathAnalysis.Core.src
         public Member(MemberKind _kind, string compValue) : this()
         {
             Kind = _kind;
-            CompValue = compValue ?? throw new ArgumentNullException(nameof(compValue));
+            CompValue = compValue ?? throw new ArgumentNullException(nameof(compValue) + "is null");
             try
             {
                 this.SolveR();
@@ -39,7 +40,8 @@ namespace MathA.MathAnalysis.Core.src
                 {
                     if (Variable != c.ToString())
                     {
-
+                        throw new InvalidCharactersInExpressionException(nameof(c) + "is invalid. " +
+                        "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                     }
                     else
                     {
@@ -48,7 +50,8 @@ namespace MathA.MathAnalysis.Core.src
                 }
                 else
                 {
-
+                    throw new InvalidCharactersInExpressionException(nameof(c) + "is invalid. " +
+                        "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                 }
             }
         }
