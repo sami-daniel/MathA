@@ -7,6 +7,7 @@ namespace MathA.MathAnalysis.Core.src
 {
     internal struct Member : ISolver
     {
+        List<char> permitChar = ['+', '-', '/', '*', '(', ')'];
         public readonly MemberKind Kind { get; }
         public double Coefficient { get; private set; }
         public readonly string CompValue { get; }
@@ -51,9 +52,10 @@ namespace MathA.MathAnalysis.Core.src
                         Variable = c.ToString();
                     }
                 }
-                else
+                else if(!permitChar.Any(ch => ch == c))
                 {
-                    
+                    throw new InvalidCharactersInExpressionException(Variable + c + " is invalid. " +
+                       "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                 }
             }
         }
