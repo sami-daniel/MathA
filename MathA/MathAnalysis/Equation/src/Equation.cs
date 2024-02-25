@@ -13,8 +13,7 @@ namespace MathA.MathAnalysis.Equation.src
         public Member LeftSide { get; private set; }
         public Member RightSide { get; private set; }
         public string Variable { get; private set; } = "";
-
-        public Result? Result => throw new NotImplementedException();
+        public ResultMember? Result => throw new NotImplementedException();
 
         public Equation(string equation) : this()
         {
@@ -68,7 +67,7 @@ namespace MathA.MathAnalysis.Equation.src
                     {
                         Variable = v.ToString();
                     }
-                    else if(Variable != v.ToString() && Variable != "")
+                    else if (Variable != v.ToString() && Variable != "")
                     {
                         throw new InvalidVariableInEquationException(Variable + " is invalid. " +
                         "Check github.com https://github.com/sami-daniel/MathA to use correctly");
