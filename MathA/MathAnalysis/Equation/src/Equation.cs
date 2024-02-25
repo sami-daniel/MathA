@@ -1,6 +1,7 @@
 ﻿using MathA.MathAnalysis.Core.contracts;
 using MathA.MathAnalysis.Core.src;
 using MathA.MathAnalysis.Core.src.Enums;
+using MathA.MathAnalysis.Equation.src.Exceptions;
 using System.Text.RegularExpressions;
 
 namespace MathA.MathAnalysis.Equation.src
@@ -23,6 +24,7 @@ namespace MathA.MathAnalysis.Equation.src
                 LeftSide = new(MemberKind.Side, equation.Split('=')[0]);
                 RightSide = new(MemberKind.Side, equation.Split('=')[1]);
                 SplitEqtMember();
+                VarEx();
             }
             catch
             {
@@ -62,7 +64,8 @@ namespace MathA.MathAnalysis.Equation.src
                     }
                     else if(Variable != v.ToString() && Variable != "")
                     {
-                         
+                        throw new InvalidVariableInEquationException(Variable + " is invalid. " +
+                        "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                     }
                 }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
