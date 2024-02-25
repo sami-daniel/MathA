@@ -20,7 +20,8 @@ namespace MathA.MathAnalysis.Core.src
             Kind = _kind;
             Variable = "";
             Coefficient = 0d;
-            CompValue = compValue ?? throw new ArgumentNullException(nameof(compValue) + "is null");
+            var paramName = nameof(compValue) + " is null";
+            CompValue = compValue ?? throw new ArgumentNullException(paramName);
             try
             {
                 this.SolveR();
@@ -82,7 +83,7 @@ namespace MathA.MathAnalysis.Core.src
             }
         }
 
-        public override string ToString()
+        public readonly override string ToString()
         {
             return Result + ", kind of " + Kind.ToString() + "-type";
         }
