@@ -8,8 +8,8 @@ namespace MathA.MathAnalysis.Equation.src
 {
     internal struct Equation : ISolver
     {
-        List<Member> LeftSideMembers = [];
-        List<Member> RightSideMember = [];
+        List<Member> leftSideMembers = [];
+        List<Member> rightSideMember = [];
         public Member LeftSide { get; private set; }
         public Member RightSide { get; private set; }
         public string Variable { get; private set; } = "";
@@ -25,6 +25,7 @@ namespace MathA.MathAnalysis.Equation.src
                 RightSide = new(MemberKind.Side, equation.Split('=')[1]);
                 SplitEqtMember();
                 VarEx();
+                ReplaceMembersEqt();
             }
             catch
             {
@@ -47,13 +48,18 @@ namespace MathA.MathAnalysis.Equation.src
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
             for (int i = 0; i < LeftSide.Result.ToString().Split(' ').Length; i++)
             {
-                LeftSideMembers.Add(new Member(MemberKind.Term, LeftSide.Result.ToString().Split(' ')[i]));
+                leftSideMembers.Add(new Member(MemberKind.Term, LeftSide.Result.ToString().Split(' ')[i]));
             }
+            for (int i = 0; i < RightSide.Result.ToString().Split(' ').Length; i++)
+            {
+                rightSideMember.Add(new Member(MemberKind.Term, RightSide.Result.ToString().Split(' ')[i]));
+            }
+
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
         }
         void VarEx()
         {
-            foreach (var member in LeftSideMembers)
+            foreach (var member in leftSideMembers)
             {
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
                 foreach (var v in member.Variable)
@@ -70,6 +76,12 @@ namespace MathA.MathAnalysis.Equation.src
                 }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
+        }
+        void ReplaceMembersEqt()
+        {
+            var allMember = leftSideMembers.Concat(rightSideMember).ToList();
+            leftSideMembers = allMember.Where(m => m.Variable != "").ToList();
+            rightSideMember = allMember.Where(m => m.Variable == "").ToList();
         }
     }
 }
