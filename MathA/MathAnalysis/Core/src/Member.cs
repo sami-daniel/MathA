@@ -45,7 +45,7 @@ namespace MathA.MathAnalysis.Core.src
                 {
                     if (Variable != c.ToString() && Variable != "")
                     {
-                        throw new InvalidCharactersInExpressionException(Variable + c + " is invalid. " +
+                        throw new InvalidVariableInExpressionException(c + " is invalid. " +
                         "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                     }
                     else
@@ -57,9 +57,9 @@ namespace MathA.MathAnalysis.Core.src
                 {
                     coe += c;
                 }
-                else if(!permitOperator.Any(ch => ch == c) && !permitSymbols.Any(ch => ch == c) && char.IsLetter(c))
+                else if(!permitOperator.Any(ch => ch == c) && !permitSymbols.Any(ch => ch == c))
                 {
-                    throw new InvalidCharactersInExpressionException(Variable + c + " is invalid. " +
+                    throw new InvalidCharactersInExpressionException(c + " is invalid. " +
                        "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                 }
             }
