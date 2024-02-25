@@ -13,7 +13,7 @@ namespace MathA.MathAnalysis.Core.src
         public double Coefficient { get; private set; }
         public readonly string CompValue { get; }
         public string? Variable { get; private set; }
-        public Result? Result { get; private set; }
+        public ResultMember? Result { get; private set; }
 
         public Member(MemberKind _kind, string compValue) : this()
         {
