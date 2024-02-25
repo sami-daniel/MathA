@@ -7,7 +7,8 @@ namespace MathA.MathAnalysis.Core.src
 {
     internal struct Member : ISolver
     {
-        List<char> permitChar = ['+', '-', '/', '*', '(', ')'];
+        public readonly static List<char> permitOperator = ['+', '-', '/', '*'];
+        public readonly static List<char> permitSymbols = ['(',')'];
         public readonly MemberKind Kind { get; }
         public double Coefficient { get; private set; }
         public readonly string CompValue { get; }
@@ -52,12 +53,17 @@ namespace MathA.MathAnalysis.Core.src
                         Variable = c.ToString();
                     }
                 }
-                else if(!permitChar.Any(ch => ch == c))
+                else if(permitOperator.Any(ch => ch == c))
+                {
+                    coe += c;
+                }
+                else if(!permitOperator.Any(ch => ch == c) && !permitSymbols.Any(ch => ch == c))
                 {
                     throw new InvalidCharactersInExpressionException(Variable + c + " is invalid. " +
                        "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                 }
             }
+            Coefficient = Convert.ToDouble(coe);
         }
 
         void ISolver.Solve()
@@ -73,7 +79,7 @@ namespace MathA.MathAnalysis.Core.src
             }
             catch
             {
-                Result = new(CompValue);
+                Result = new(Coefficient.ToString());
             }
         }
 
