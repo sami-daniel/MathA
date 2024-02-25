@@ -23,7 +23,6 @@ namespace MathA.MathAnalysis.Core.src
             CompValue = compValue ?? throw new ArgumentNullException(nameof(compValue) + "is null");
             try
             {
-                ConfigV();
                 this.SolveR();
             }
             catch
@@ -57,13 +56,13 @@ namespace MathA.MathAnalysis.Core.src
                 {
                     coe += c;
                 }
-                else if(!permitOperator.Any(ch => ch == c) && !permitSymbols.Any(ch => ch == c))
+                else if(!permitOperator.Any(ch => ch == c) && !permitSymbols.Any(ch => ch == c) && char.IsLetter(c))
                 {
                     throw new InvalidCharactersInExpressionException(Variable + c + " is invalid. " +
                        "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                 }
             }
-            Coefficient = Convert.ToDouble(coe);
+                //Coefficient = Convert.ToDouble(coe);
         }
 
         void ISolver.Solve()
@@ -79,7 +78,7 @@ namespace MathA.MathAnalysis.Core.src
             }
             catch
             {
-                Result = new(Coefficient.ToString());
+                Result = new(CompValue.ToString());
             }
         }
 
