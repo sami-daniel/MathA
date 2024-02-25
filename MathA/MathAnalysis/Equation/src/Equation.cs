@@ -10,7 +10,7 @@ namespace MathA.MathAnalysis.Equation.src
         List<Member> LeftSideMembers = [];
         List<Member> RightSideMember = [];
         public Member LeftSide { get; private set; }
-        public Member RightSide { get; private set;}
+        public Member RightSide { get; private set; }
         public string Variable { get; private set; } = "";
 
         public Result? Result => throw new NotImplementedException();
@@ -48,7 +48,25 @@ namespace MathA.MathAnalysis.Equation.src
                 LeftSideMembers.Add(new Member(MemberKind.Term, LeftSide.Result.ToString().Split(' ')[i]));
             }
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
-            
+        }
+        void VarEx()
+        {
+            foreach (var member in LeftSideMembers)
+            {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+                foreach (var v in member.Variable)
+                {
+                    if (Variable == v.ToString())
+                    {
+                        Variable = v.ToString();
+                    }
+                    else if(Variable != v.ToString() && Variable != "")
+                    {
+                         
+                    }
+                }
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
+            }
         }
     }
 }
