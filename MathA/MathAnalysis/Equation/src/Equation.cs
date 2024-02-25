@@ -1,6 +1,7 @@
 ﻿using MathA.MathAnalysis.Core.contracts;
 using MathA.MathAnalysis.Core.src;
 using MathA.MathAnalysis.Core.src.Enums;
+using System.Text.RegularExpressions;
 
 namespace MathA.MathAnalysis.Equation.src
 {
@@ -16,13 +17,17 @@ namespace MathA.MathAnalysis.Equation.src
 
         public Equation(string equation) : this()
         {
-            
+            equation = FormatEqt(equation);
+            LeftSide = new(MemberKind.Side, equation.Split('=')[0]);
+            RightSide = new(MemberKind.Side, equation.Split('=')[1]);
         }
 
         public void Solve()
         {
             throw new NotImplementedException();
         }
+
+        string FormatEqt(string eqt) => Regex.Replace(eqt, "\\s+", " ");
 
     }
 }
