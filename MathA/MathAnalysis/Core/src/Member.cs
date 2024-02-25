@@ -45,7 +45,7 @@ namespace MathA.MathAnalysis.Core.src
                 {
                     if (Variable != c.ToString() && Variable != "")
                     {
-                        throw new InvalidCharactersInExpressionException(Variable + c + " is invalid. " +
+                        throw new InvalidVariableInExpressionException(c + " is invalid. " +
                         "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                     }
                     else
