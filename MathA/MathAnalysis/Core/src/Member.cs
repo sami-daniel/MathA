@@ -24,6 +24,7 @@ namespace MathA.MathAnalysis.Core.src
             CompValue = compValue ?? throw new ArgumentNullException(paramName);
             try
             {
+                VarEx();
                 this.SolveR();
             }
             catch
@@ -82,7 +83,24 @@ namespace MathA.MathAnalysis.Core.src
                 Result = new(CompValue.ToString());
             }
         }
-
+        void VarEx()
+        {
+            foreach (var c in CompValue)
+            {
+                if (char.IsLetter(c))
+                {
+                    if (Variable != c.ToString() && Variable != "")
+                    {
+                        throw new InvalidVariableInExpressionException(c + " is invalid. " +
+                        "Check github.com https://github.com/sami-daniel/MathA to use correctly");
+                    }
+                    else
+                    {
+                        Variable = c.ToString();
+                    }
+                }
+            }
+        }
         public readonly override string ToString()
         {
             return Result + ", kind of " + Kind.ToString() + "-type";
