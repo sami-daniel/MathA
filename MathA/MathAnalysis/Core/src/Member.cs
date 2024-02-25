@@ -59,7 +59,7 @@ namespace MathA.MathAnalysis.Core.src
                 }
                 else if(!permitOperator.Any(ch => ch == c) && !permitSymbols.Any(ch => ch == c))
                 {
-                    throw new InvalidCharactersInExpressionException(Variable + c + " is invalid. " +
+                    throw new InvalidCharactersInExpressionException(c + " is invalid. " +
                        "Check github.com https://github.com/sami-daniel/MathA to use correctly");
                 }
             }
