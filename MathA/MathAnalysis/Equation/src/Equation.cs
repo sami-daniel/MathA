@@ -78,9 +78,16 @@ namespace MathA.MathAnalysis.Equation.src
         }
         void ReplaceMembersEqt()
         {
-            var allMember = leftSideMembers.Concat(rightSideMember).ToList();
-            leftSideMembers = allMember.Where(m => m.Variable != "").ToList();
-            rightSideMember = allMember.Where(m => m.Variable == "").ToList();
+            for (int i = 0; i < leftSideMembers.Count; i++)
+            {
+                var newM = "";
+                var m = leftSideMembers[i];
+                if (m.Variable == "")
+                {
+                    newM = (m.Coefficient * -1).ToString();
+                    leftSideMembers[i] = new Member(MemberKind.Term, newM);
+                }
+            }
         }
     }
 }
